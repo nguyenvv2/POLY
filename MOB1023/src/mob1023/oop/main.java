@@ -34,10 +34,16 @@ public class main {
             dongVat.display();
         }
         System.out.println("==========");
-        
+
         ArrayList<DongVat> result = dongVatService.searchTheoCanNang(listDongVat, 2, 5);
-        
+
         for (DongVat dongVat : result) {
+            dongVat.display();
+        }
+
+        ArrayList<DongVat> searchTheoTen = 
+                dongVatService.searchTheoTen(listDongVat, "me");
+        for (DongVat dongVat : searchTheoTen) {
             dongVat.display();
         }
     }
