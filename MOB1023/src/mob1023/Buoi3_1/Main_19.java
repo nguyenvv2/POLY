@@ -203,6 +203,10 @@ public class Main_19 extends javax.swing.JFrame {
     private void btn_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearActionPerformed
         // TODO add your handling code here:
         txt_hoten.setText("");
+        buttonGroup.clearSelection();
+        chk_bongda.setSelected(false);
+        chk_choigame.setSelected(false);
+        cb_namsinh.setSelectedIndex(2);
     }//GEN-LAST:event_btn_clearActionPerformed
 
     /**
