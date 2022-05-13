@@ -42,9 +42,9 @@
                   </Group>
                   <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="jCheckBox1" min="-2" max="-2" attributes="0"/>
+                          <Component id="chk_game" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="jCheckBox2" min="-2" max="-2" attributes="0"/>
+                          <Component id="chk_an" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="rd_nam" min="-2" max="-2" attributes="0"/>
@@ -97,8 +97,8 @@
               </Group>
               <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jCheckBox1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jCheckBox2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="chk_game" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="chk_an" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -188,31 +188,31 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="jTable1">
+        <Component class="javax.swing.JTable" name="tb_gv">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="4" rowCount="4">
-                <Column editable="true" title="id" type="java.lang.Object">
+                <Column editable="true" title="STT" type="java.lang.Object">
                   <Data value="1"/>
                   <Data value="2"/>
                   <Data value="null"/>
                   <Data value="null"/>
                 </Column>
-                <Column editable="true" title="ten" type="java.lang.Object">
-                  <Data value="nam"/>
-                  <Data value="nguyen"/>
+                <Column editable="true" title="Ten" type="java.lang.Object">
+                  <Data value="Tran Van Nam"/>
+                  <Data value="Le Thai Nam"/>
                   <Data value="null"/>
                   <Data value="null"/>
                 </Column>
-                <Column editable="true" title="nam sinh" type="java.lang.Object">
+                <Column editable="true" title="Nam Sinh" type="java.lang.Object">
                   <Data value="1997"/>
                   <Data value="2000"/>
                   <Data value="null"/>
                   <Data value="null"/>
                 </Column>
-                <Column editable="true" title="dia chi" type="java.lang.Object">
-                  <Data value="ha noi"/>
-                  <Data value="thai binh"/>
+                <Column editable="true" title="So Dien Thoai" type="java.lang.Object">
+                  <Data value="12345"/>
+                  <Data value="567890"/>
                   <Data value="null"/>
                   <Data value="null"/>
                 </Column>
@@ -246,15 +246,18 @@
               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tb_gvMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JCheckBox" name="jCheckBox1">
+    <Component class="javax.swing.JCheckBox" name="chk_game">
       <Properties>
         <Property name="text" type="java.lang.String" value="game"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="jCheckBox2">
+    <Component class="javax.swing.JCheckBox" name="chk_an">
       <Properties>
         <Property name="text" type="java.lang.String" value="an"/>
       </Properties>
@@ -268,6 +271,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Clear"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 import javax.swing.ButtonGroup;
+import javax.swing.ButtonModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -26,10 +27,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Jtable extends javax.swing.JFrame {
 
-    private JScrollPane jScrollPane1;
-    private JTable tbl_gv;
-
     private DefaultComboBoxModel cbModel;
+    private ButtonGroup buttonGroup;
 
     /**
      * Creates new form Jtable
@@ -44,6 +43,7 @@ public class Jtable extends javax.swing.JFrame {
         List<String> listNamSinh = new ArrayList<>();
         listNamSinh.add("2000");
         listNamSinh.add("2001");
+        listNamSinh.add("2002");
         cbc_namsinh.setModel(cbModel = new DefaultComboBoxModel());
         for (String string : listNamSinh) {
             cbModel.addElement(string);
@@ -52,7 +52,7 @@ public class Jtable extends javax.swing.JFrame {
     }
 
     void radioGioiTinh() {
-        ButtonGroup buttonGroup = new ButtonGroup();
+        buttonGroup = new ButtonGroup();
         buttonGroup.add(rd_nam);
         buttonGroup.add(rd_nu);
     }
@@ -64,10 +64,8 @@ public class Jtable extends javax.swing.JFrame {
         this.jLabel2 = jLabel2;
         this.jLabel3 = jLabel3;
         this.jLabel4 = jLabel4;
-        this.jScrollPane1 = jScrollPane1;
         this.rd_nam = rd_nam;
         this.rd_nu = rd_nu;
-        this.tbl_gv = tbl_gv;
         this.txt_sdt = txt_sdt;
         this.txt_tengv = txt_tengv;
     }
@@ -92,9 +90,9 @@ public class Jtable extends javax.swing.JFrame {
         cbc_namsinh = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
+        tb_gv = new javax.swing.JTable();
+        chk_game = new javax.swing.JCheckBox();
+        chk_an = new javax.swing.JCheckBox();
         jLabel5 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
@@ -140,26 +138,36 @@ public class Jtable extends javax.swing.JFrame {
 
         jLabel4.setText("Nam Sinh");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tb_gv.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"1", "nam", "1997", "ha noi"},
-                {"2", "nguyen", "2000", "thai binh"},
+                {"1", "Tran Van Nam", "1997", "12345"},
+                {"2", "Le Thai Nam", "2000", "567890"},
                 {null, null, null, null},
                 {null, null, null, null}
             },
             new String [] {
-                "id", "ten", "nam sinh", "dia chi"
+                "STT", "Ten", "Nam Sinh", "So Dien Thoai"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        tb_gv.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tb_gvMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tb_gv);
 
-        jCheckBox1.setText("game");
+        chk_game.setText("game");
 
-        jCheckBox2.setText("an");
+        chk_an.setText("an");
 
         jLabel5.setText("So Thich");
 
         jButton1.setText("Clear");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -182,9 +190,9 @@ public class Jtable extends javax.swing.JFrame {
                         .addComponent(btn_them))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(jCheckBox1)
+                            .addComponent(chk_game)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jCheckBox2))
+                            .addComponent(chk_an))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addComponent(rd_nam)
                             .addGap(39, 39, 39)
@@ -224,8 +232,8 @@ public class Jtable extends javax.swing.JFrame {
                     .addComponent(jLabel4))
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox1)
-                    .addComponent(jCheckBox2)
+                    .addComponent(chk_game)
+                    .addComponent(chk_an)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -241,7 +249,14 @@ public class Jtable extends javax.swing.JFrame {
 
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this, "Chúc mừng bạn đã thêm thành công");
+        String error = "";
+        if ("".equals(txt_tengv.getText())) {
+            JOptionPane.showMessageDialog(this, "Ten giao vien khong duoc trong");
+        } else if ("".equals(txt_sdt.getText())) {
+            JOptionPane.showMessageDialog(this, "So dien thoai khong duoc bo trong");
+        } else {
+            JOptionPane.showMessageDialog(this, "So dien thoai khong duoc bo trong");
+        }
     }//GEN-LAST:event_btn_themActionPerformed
 
     private void cbc_namsinhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbc_namsinhActionPerformed
@@ -254,6 +269,23 @@ public class Jtable extends javax.swing.JFrame {
         // TODO add your handling code here:
 
     }//GEN-LAST:event_rd_namActionPerformed
+
+    private void tb_gvMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_gvMouseClicked
+        // TODO add your handling code here:
+        int rowSelected = tb_gv.getSelectedRow();
+        txt_tengv.setText((String) tb_gv.getValueAt(rowSelected, 1));
+        txt_sdt.setText((String) tb_gv.getValueAt(rowSelected, 3));
+    }//GEN-LAST:event_tb_gvMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        txt_sdt.setText("");
+        txt_tengv.setText("");
+        cbc_namsinh.setSelectedIndex(0);
+        chk_game.setSelected(false);
+        chk_an.setSelected(false);
+        buttonGroup.clearSelection();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -293,18 +325,18 @@ public class Jtable extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_them;
     private javax.swing.JComboBox<String> cbc_namsinh;
+    private javax.swing.JCheckBox chk_an;
+    private javax.swing.JCheckBox chk_game;
     private javax.swing.JButton jButton1;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JRadioButton rd_nam;
     private javax.swing.JRadioButton rd_nu;
+    private javax.swing.JTable tb_gv;
     private javax.swing.JTextField txt_sdt;
     private javax.swing.JTextField txt_tengv;
     // End of variables declaration//GEN-END:variables
