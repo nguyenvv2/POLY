@@ -37,7 +37,7 @@ Switch - case:
       break;
     case 2:
       alert("Day la thang 2");
-
+      break;
     default:
       break;
   }
