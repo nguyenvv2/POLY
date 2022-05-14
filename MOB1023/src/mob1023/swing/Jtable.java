@@ -255,7 +255,7 @@ public class Jtable extends javax.swing.JFrame {
         } else if ("".equals(txt_sdt.getText())) {
             JOptionPane.showMessageDialog(this, "So dien thoai khong duoc bo trong");
         } else {
-            JOptionPane.showMessageDialog(this, "So dien thoai khong duoc bo trong");
+            JOptionPane.showMessageDialog(this, "Them thanh cong");
         }
     }//GEN-LAST:event_btn_themActionPerformed
 
