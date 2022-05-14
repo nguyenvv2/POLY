@@ -41,5 +41,13 @@ Switch - case:
     default:
       break;
   }
-
+kiểu dữ liệu: 
+number
+string
+undefine :
+ví dụ : var a;
+typeof a => undefine
+null :
+ví dụ var x = null;
+typeof x => null
 */
