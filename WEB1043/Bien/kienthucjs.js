@@ -50,4 +50,6 @@ typeof a => undefine
 null :
 ví dụ var x = null;
 typeof x => null
+
+in ra màn hình : document.write("Giá trị muốn in");
 */
