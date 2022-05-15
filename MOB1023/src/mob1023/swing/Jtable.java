@@ -29,6 +29,8 @@ public class Jtable extends javax.swing.JFrame {
 
     private DefaultComboBoxModel cbModel;
     private ButtonGroup buttonGroup;
+    private DefaultTableModel defaultTableModel;
+    private List<String> listNamSinh;
 
     /**
      * Creates new form Jtable
@@ -37,13 +39,71 @@ public class Jtable extends javax.swing.JFrame {
         initComponents();
         radioGioiTinh();
         cbcNamSinh();
+        tbGiaoVienColumns();
+        loadDataTable();
+    }
+
+    public List<String> getColumname() {
+        List<String> lstcl = new ArrayList<>();
+        lstcl.add("Số TT");
+        lstcl.add("Mã");
+        lstcl.add("Tên");
+        lstcl.add("Năm sinh");
+        lstcl.add("Giới tính");
+        lstcl.add("Điện thoại");
+        return lstcl;
+    }
+
+    void tbGiaoVienColumns() {
+        defaultTableModel = (DefaultTableModel) tb_gv.getModel();
+        for (String x : getColumname()) {//qlgv.getColumname() Lấy ra 1 danh sách các tên cột đã đặt
+            defaultTableModel.addColumn(x);//Thêm tên cột vào bảng Giáo viên
+        }
+        defaultTableModel.setRowCount(0);
+    }
+
+    private List<GiaoVien> listGiaoViens() {
+        List<GiaoVien> lstGiaoVien = new ArrayList<>();
+        GiaoVien gv = new GiaoVien("Dungna", 1, "Dũng", 1998, 1, "0865880779");
+        GiaoVien gv1 = new GiaoVien("Minhdq", 2, "Minh", 1999, 1, "0865880779");
+        GiaoVien gv2 = new GiaoVien("Thientt", 3, "Thiện", 2000, 1, "0865880779");
+        GiaoVien gv3 = new GiaoVien("Loantt", 4, "Loan", 2001, 0, "0865880779");
+        GiaoVien gv4 = new GiaoVien("Quangck", 5, "Quang", 1998, 1, "0865880779");
+        GiaoVien gv5 = new GiaoVien("Datlt", 6, "Đạt", 1997, 1, "0865880779");
+        lstGiaoVien.add(gv);
+        lstGiaoVien.add(gv1);
+        lstGiaoVien.add(gv2);
+        lstGiaoVien.add(gv3);
+        lstGiaoVien.add(gv4);
+        lstGiaoVien.add(gv5);
+        return lstGiaoVien;
+    }
+
+    void loadDataTable() {
+        defaultTableModel.setRowCount(0);
+        defaultTableModel = (DefaultTableModel) tb_gv.getModel();
+        for (GiaoVien x : listGiaoViens()) {
+            defaultTableModel.addRow(new Object[]{x.getId(), x.getMagv(),
+                x.getTengv(), x.getNamSinh(), gioiTinh(x.getGioiTinh()), x.getSdt()});
+        }
+
+    }
+
+    private String gioiTinh(int gioiTinh) {
+        if (gioiTinh == 1) {
+            return "nam";
+        } else {
+            return "nữ";
+        }
     }
 
     void cbcNamSinh() {
-        List<String> listNamSinh = new ArrayList<>();
+        listNamSinh = new ArrayList<>();
         listNamSinh.add("2000");
         listNamSinh.add("2001");
         listNamSinh.add("2002");
+        listNamSinh.add("2003");
+
         cbc_namsinh.setModel(cbModel = new DefaultComboBoxModel());
         for (String string : listNamSinh) {
             cbModel.addElement(string);
@@ -91,25 +151,25 @@ public class Jtable extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tb_gv = new javax.swing.JTable();
-        chk_game = new javax.swing.JCheckBox();
-        chk_an = new javax.swing.JCheckBox();
-        jLabel5 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        txt_magv = new javax.swing.JTextField();
+        btn_load = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        txt_sdt.setText("So Dien Thoai");
+        txt_sdt.setText("Nhập số điện thoại");
         txt_sdt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_sdtActionPerformed(evt);
             }
         });
 
-        txt_tengv.setText("Ten Giang Vien");
+        txt_tengv.setText("Nhập tên giảng viên");
 
-        jLabel1.setText("Nhap ten giang vien");
+        jLabel1.setText("Nhập họ tên giảng viên");
 
-        jLabel2.setText("Nhap so dien thoai");
+        jLabel2.setText("Nhập số điện thoại");
 
         btn_them.setText("Them");
         btn_them.addActionListener(new java.awt.event.ActionListener() {
@@ -127,9 +187,9 @@ public class Jtable extends javax.swing.JFrame {
 
         rd_nu.setText("nu");
 
-        jLabel3.setText("Gioi Tinh");
+        jLabel3.setText("Giới tính");
 
-        cbc_namsinh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", " " }));
+        cbc_namsinh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1900", "1901", "1902" }));
         cbc_namsinh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbc_namsinhActionPerformed(evt);
@@ -140,13 +200,13 @@ public class Jtable extends javax.swing.JFrame {
 
         tb_gv.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"1", "Tran Van Nam", "1997", "12345"},
-                {"2", "Le Thai Nam", "2000", "567890"},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "STT", "Ten", "Nam Sinh", "So Dien Thoai"
+
             }
         ));
         tb_gv.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -156,12 +216,6 @@ public class Jtable extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tb_gv);
 
-        chk_game.setText("game");
-
-        chk_an.setText("an");
-
-        jLabel5.setText("So Thich");
-
         jButton1.setText("Clear");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -169,43 +223,53 @@ public class Jtable extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setText("Mã giảng viên");
+
+        txt_magv.setText("Nhập mã giảng viên");
+
+        btn_load.setText("Load Data");
+        btn_load.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_loadActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(87, 87, 87)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 223, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cbc_namsinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(txt_tengv, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(86, 86, 86)
-                        .addComponent(btn_them))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(chk_game)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(chk_an))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(rd_nam)
-                            .addGap(39, 39, 39)
-                            .addComponent(rd_nu)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(txt_sdt, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(86, 86, 86)
-                        .addComponent(jButton1)))
-                .addGap(72, 72, 72))
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 892, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel6))
+                        .addGap(49, 49, 49)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txt_tengv, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(260, 260, 260)
+                                .addComponent(btn_them))
+                            .addComponent(cbc_namsinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_magv, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txt_sdt, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(rd_nam)
+                                        .addGap(36, 36, 36)
+                                        .addComponent(rd_nu)))
+                                .addGap(263, 263, 263)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton1)
+                                    .addComponent(btn_load)))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 892, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(21, 21, 21))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -216,28 +280,32 @@ public class Jtable extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(btn_them))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txt_sdt, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(rd_nam)
-                        .addComponent(rd_nu))
-                    .addComponent(jLabel3))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(cbc_namsinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(chk_game)
-                    .addComponent(chk_an)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txt_sdt, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(rd_nam)
+                            .addComponent(rd_nu))
+                        .addGap(29, 29, 29)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(txt_magv, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(cbc_namsinh, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(63, 63, 63))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jButton1))
+                        .addGap(10, 10, 10)
+                        .addComponent(btn_load)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(100, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -249,13 +317,26 @@ public class Jtable extends javax.swing.JFrame {
 
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
         // TODO add your handling code here:
+
         String error = "";
         if ("".equals(txt_tengv.getText())) {
             JOptionPane.showMessageDialog(this, "Ten giao vien khong duoc trong");
         } else if ("".equals(txt_sdt.getText())) {
             JOptionPane.showMessageDialog(this, "So dien thoai khong duoc bo trong");
         } else {
+//            GiaoVien gv = new GiaoVien();
+//            gv.setTengv(txt_tengv.getText());
+//            if (rd_nu.isSelected()) {
+//                gv.setGioiTinh(0);
+//            } else {
+//                gv.setGioiTinh(1);
+//            }
+//            gv.setId(listGiaoViens(lstGiaoVien).size() + 1);
+//            gv.setSdt(txt_sdt.getText());
+//            lstGiaoVien.add(gv);
+//          
             JOptionPane.showMessageDialog(this, "Them thanh cong");
+
         }
     }//GEN-LAST:event_btn_themActionPerformed
 
@@ -273,8 +354,15 @@ public class Jtable extends javax.swing.JFrame {
     private void tb_gvMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_gvMouseClicked
         // TODO add your handling code here:
         int rowSelected = tb_gv.getSelectedRow();
-        txt_tengv.setText((String) tb_gv.getValueAt(rowSelected, 1));
-        txt_sdt.setText((String) tb_gv.getValueAt(rowSelected, 3));
+        txt_tengv.setText((String) tb_gv.getValueAt(rowSelected, 2));
+        txt_sdt.setText((String) tb_gv.getValueAt(rowSelected, 5));
+        if (tb_gv.getValueAt(rowSelected, 4).equals(1)) {
+            rd_nam.setSelected(true);
+        } else {
+            rd_nu.setSelected(true);
+        }
+        txt_magv.setText(tb_gv.getValueAt(rowSelected, 1).toString());
+
     }//GEN-LAST:event_tb_gvMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -282,10 +370,21 @@ public class Jtable extends javax.swing.JFrame {
         txt_sdt.setText("");
         txt_tengv.setText("");
         cbc_namsinh.setSelectedIndex(0);
-        chk_game.setSelected(false);
-        chk_an.setSelected(false);
+//        chk_game.setSelected(false);
+//        chk_an.setSelected(false);
         buttonGroup.clearSelection();
+
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btn_loadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loadActionPerformed
+        // TODO add your handling code here:
+        defaultTableModel.setRowCount(0);
+        defaultTableModel = (DefaultTableModel) tb_gv.getModel();
+        for (GiaoVien x : listGiaoViens()) {
+            defaultTableModel.addRow(new Object[]{x.getId(), x.getMagv(), x.getTengv(), x.getNamSinh(), x.getGioiTinh(), x.getSdt()});
+        }
+
+    }//GEN-LAST:event_btn_loadActionPerformed
 
     /**
      * @param args the command line arguments
@@ -323,20 +422,20 @@ public class Jtable extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_load;
     private javax.swing.JButton btn_them;
     private javax.swing.JComboBox<String> cbc_namsinh;
-    private javax.swing.JCheckBox chk_an;
-    private javax.swing.JCheckBox chk_game;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JRadioButton rd_nam;
     private javax.swing.JRadioButton rd_nu;
     private javax.swing.JTable tb_gv;
+    private javax.swing.JTextField txt_magv;
     private javax.swing.JTextField txt_sdt;
     private javax.swing.JTextField txt_tengv;
     // End of variables declaration//GEN-END:variables
