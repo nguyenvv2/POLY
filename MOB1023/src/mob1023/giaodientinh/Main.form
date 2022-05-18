@@ -173,15 +173,12 @@
     <Component class="javax.swing.JComboBox" name="cb_namsinh">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="5">
-            <StringItem index="0" value="1999"/>
-            <StringItem index="1" value="2000"/>
-            <StringItem index="2" value="2001"/>
-            <StringItem index="3" value="2002"/>
-            <StringItem index="4" value="2003"/>
+          <StringArray count="3">
+            <StringItem index="0" value="Ha noi"/>
+            <StringItem index="1" value="Thai nguyen"/>
+            <StringItem index="2" value="hai phong"/>
           </StringArray>
         </Property>
-        <Property name="selectedIndex" type="int" value="2"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>

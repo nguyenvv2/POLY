@@ -7,9 +7,7 @@ package mob1023.swing;
 import java.awt.HeadlessException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 import javax.swing.ButtonGroup;
-import javax.swing.ButtonModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -31,11 +29,13 @@ public class Jtable extends javax.swing.JFrame {
     private ButtonGroup buttonGroup;
     private DefaultTableModel defaultTableModel;
     private List<String> listNamSinh;
+    private GiangVienService giangVienService = new GiangVienService();
 
     /**
      * Creates new form Jtable
      */
     public Jtable() {
+
         initComponents();
         radioGioiTinh();
         cbcNamSinh();
@@ -62,27 +62,10 @@ public class Jtable extends javax.swing.JFrame {
         defaultTableModel.setRowCount(0);
     }
 
-    private List<GiaoVien> listGiaoViens() {
-        List<GiaoVien> lstGiaoVien = new ArrayList<>();
-        GiaoVien gv = new GiaoVien("Dungna", 1, "Dũng", 1998, 1, "0865880779");
-        GiaoVien gv1 = new GiaoVien("Minhdq", 2, "Minh", 1999, 1, "0865880779");
-        GiaoVien gv2 = new GiaoVien("Thientt", 3, "Thiện", 2000, 1, "0865880779");
-        GiaoVien gv3 = new GiaoVien("Loantt", 4, "Loan", 2001, 0, "0865880779");
-        GiaoVien gv4 = new GiaoVien("Quangck", 5, "Quang", 1998, 1, "0865880779");
-        GiaoVien gv5 = new GiaoVien("Datlt", 6, "Đạt", 1997, 1, "0865880779");
-        lstGiaoVien.add(gv);
-        lstGiaoVien.add(gv1);
-        lstGiaoVien.add(gv2);
-        lstGiaoVien.add(gv3);
-        lstGiaoVien.add(gv4);
-        lstGiaoVien.add(gv5);
-        return lstGiaoVien;
-    }
-
     void loadDataTable() {
         defaultTableModel.setRowCount(0);
         defaultTableModel = (DefaultTableModel) tb_gv.getModel();
-        for (GiaoVien x : listGiaoViens()) {
+        for (GiaoVien x : giangVienService.getlstGiaoVien()) {
             defaultTableModel.addRow(new Object[]{x.getId(), x.getMagv(),
                 x.getTengv(), x.getNamSinh(), gioiTinh(x.getGioiTinh()), x.getSdt()});
         }
@@ -190,11 +173,6 @@ public class Jtable extends javax.swing.JFrame {
         jLabel3.setText("Giới tính");
 
         cbc_namsinh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1900", "1901", "1902" }));
-        cbc_namsinh.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbc_namsinhActionPerformed(evt);
-            }
-        });
 
         jLabel4.setText("Nam Sinh");
 
@@ -324,27 +302,26 @@ public class Jtable extends javax.swing.JFrame {
         } else if ("".equals(txt_sdt.getText())) {
             JOptionPane.showMessageDialog(this, "So dien thoai khong duoc bo trong");
         } else {
-//            GiaoVien gv = new GiaoVien();
-//            gv.setTengv(txt_tengv.getText());
-//            if (rd_nu.isSelected()) {
-//                gv.setGioiTinh(0);
-//            } else {
-//                gv.setGioiTinh(1);
-//            }
-//            gv.setId(listGiaoViens(lstGiaoVien).size() + 1);
-//            gv.setSdt(txt_sdt.getText());
-//            lstGiaoVien.add(gv);
-//          
-            JOptionPane.showMessageDialog(this, "Them thanh cong");
+            GiaoVien gv = new GiaoVien();
+            gv.setTengv(txt_tengv.getText());
+            if (rd_nu.isSelected()) {
+                gv.setGioiTinh(0);
+            } else {
+                gv.setGioiTinh(1);
+            }
+            gv.setNamSinh(Integer.parseInt(cbc_namsinh.getSelectedItem().toString()));
+            gv.setId(giangVienService.getlstGiaoVien().size() + 1);
+            gv.setSdt(txt_sdt.getText());
+            Boolean isAdded = giangVienService.addGiaoVien(gv);
+            if (isAdded) {
+                loadDataTable();
+                JOptionPane.showMessageDialog(this, "Them thanh cong");
+            } else {
+                JOptionPane.showMessageDialog(this, "Them that bai");
+            }
 
         }
     }//GEN-LAST:event_btn_themActionPerformed
-
-    private void cbc_namsinhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbc_namsinhActionPerformed
-        // TODO add your handling code here:
-
-
-    }//GEN-LAST:event_cbc_namsinhActionPerformed
 
     private void rd_namActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rd_namActionPerformed
         // TODO add your handling code here:
@@ -356,12 +333,16 @@ public class Jtable extends javax.swing.JFrame {
         int rowSelected = tb_gv.getSelectedRow();
         txt_tengv.setText((String) tb_gv.getValueAt(rowSelected, 2));
         txt_sdt.setText((String) tb_gv.getValueAt(rowSelected, 5));
-        if (tb_gv.getValueAt(rowSelected, 4).equals(1)) {
+        String gt = tb_gv.getValueAt(rowSelected, 4).toString();
+        if (gt.equals("nam")) {
             rd_nam.setSelected(true);
         } else {
             rd_nu.setSelected(true);
         }
         txt_magv.setText(tb_gv.getValueAt(rowSelected, 1).toString());
+        String namSinh = tb_gv.getValueAt(rowSelected, 3).toString();
+        System.out.println(namSinh);
+        cbc_namsinh.setSelectedItem(namSinh);
 
     }//GEN-LAST:event_tb_gvMouseClicked
 
@@ -369,21 +350,20 @@ public class Jtable extends javax.swing.JFrame {
         // TODO add your handling code here:
         txt_sdt.setText("");
         txt_tengv.setText("");
+        txt_magv.setText("");
         cbc_namsinh.setSelectedIndex(0);
-//        chk_game.setSelected(false);
-//        chk_an.setSelected(false);
         buttonGroup.clearSelection();
-
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btn_loadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loadActionPerformed
         // TODO add your handling code here:
         defaultTableModel.setRowCount(0);
         defaultTableModel = (DefaultTableModel) tb_gv.getModel();
-        for (GiaoVien x : listGiaoViens()) {
-            defaultTableModel.addRow(new Object[]{x.getId(), x.getMagv(), x.getTengv(), x.getNamSinh(), x.getGioiTinh(), x.getSdt()});
+        for (GiaoVien x : giangVienService.getlstGiaoVien()) {
+            defaultTableModel.addRow(new Object[]{x.getId(), x.getMagv(),
+                x.getTengv(), x.getNamSinh(), x.getGioiTinh(), x.getSdt()});
         }
-
+        
     }//GEN-LAST:event_btn_loadActionPerformed
 
     /**

@@ -2,9 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package mob1023.array;
+package mob1023.giaodientinh;
 
-import mob1023.Buoi3_1.*;
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 
@@ -87,8 +86,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        cb_namsinh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1999", "2000", "2001", "2002", "2003" }));
-        cb_namsinh.setSelectedIndex(2);
+        cb_namsinh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ha noi", "Thai nguyen", "hai phong" }));
 
         lbl_namsinh.setText("Nam Sinh");
 
@@ -186,7 +184,9 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
         // lay gia tri tu table len txt
         int row = tb_sinhvien.getSelectedRow();
-        txt_hoten.setText((String) tb_sinhvien.getValueAt(row, 1));
+        txt_hoten.setText( tb_sinhvien.getValueAt(row, 1).toString());
+//        Object[] x = {1, "Nguyen thi B", 2000, "Thai Binh"};
+//        int[] y ={1,2,3,4,5};
 
     }//GEN-LAST:event_tb_sinhvienMouseClicked
 
@@ -235,8 +235,6 @@ public class Main extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
