@@ -27,7 +27,7 @@ public class demoLoadData extends javax.swing.JFrame {
 
     public demoLoadData() {
         initComponents();
-        addItemCombobox();
+        addNamSinh();
         addColumns();
 
         SinhVien sv1 = new SinhVien("Nguyen Van A", 1990);
@@ -38,38 +38,21 @@ public class demoLoadData extends javax.swing.JFrame {
         listSinhVien.add(sv3);
 
         loadDataTable();
+
     }
 
-    public List<SinhVien> getList() {
-        return listSinhVien;
-    }
-
-    public void loadDataTable() {
-        List<SinhVien> list = getList();
-        defaultTableModel = (DefaultTableModel) tb_sinhvien.getModel();
-        defaultTableModel.setRowCount(0);// xoa du lieu cu
-        for (SinhVien sinhVien : list) {
-            defaultTableModel.addRow(
-                    new Object[]{
-                        sinhVien.getHoTen(), sinhVien.getNamSinh()
-                    }
-            );
-        }
-    }
-
-    public void addItemCombobox() {
-        ArrayList<String> listItem = new ArrayList<>();
-        listItem.add("1999");
-        listItem.add("2000");
-        listItem.add("2001");
-        listItem.add("2002");
+    public void addNamSinh() {
+        ArrayList<String> listNamSinh = new ArrayList<>();
+        listNamSinh.add("1999");
+        listNamSinh.add("2000");
+        listNamSinh.add("2001");
+        listNamSinh.add("2002");
 
         defaultComboBoxModel = (DefaultComboBoxModel) cb_namsinh.getModel();
-        for (String item : listItem) {
+
+        for (String item : listNamSinh) {
             defaultComboBoxModel.addElement(item);
         }
-
-        cb_namsinh.setSelectedIndex(2);
 
     }
 
@@ -85,6 +68,15 @@ public class demoLoadData extends javax.swing.JFrame {
             defaultTableModel.addColumn(item);
         }
 
+    }
+
+    public void loadDataTable() {
+        defaultTableModel = (DefaultTableModel) tb_sinhvien.getModel();
+//        defaultTableModel.setRowCount(0);
+        for (SinhVien sinhVien : listSinhVien) {
+            defaultTableModel.addRow(new Object[]{
+                sinhVien.getHoTen(), sinhVien.getNamSinh()});
+        }
     }
 
     /**
@@ -117,7 +109,7 @@ public class demoLoadData extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Title 1", "Title 2"
+
             }
         ));
         jScrollPane1.setViewportView(tb_sinhvien);
@@ -196,14 +188,20 @@ public class demoLoadData extends javax.swing.JFrame {
         nếu thêm thành công -> thành công
         thêm thất bại -> thất bại
          */
+        SinhVien sv = new SinhVien();
+        String ten = txt_ten.getText();
+        int namSinh = Integer.parseInt(cb_namsinh.getSelectedItem().toString());
+        sv.setHoTen(ten);
+        sv.setNamSinh(namSinh);
+        listSinhVien.add(sv);
+        JOptionPane.showMessageDialog(this, "them thanh cong");
+        loadDataTable();
 
     }//GEN-LAST:event_btn_themActionPerformed
 
     private void btn_xoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xoaActionPerformed
         // TODO add your handling code here:
-        int row = tb_sinhvien.getSelectedRow();
-        listSinhVien.remove(row);
-        loadDataTable();
+
     }//GEN-LAST:event_btn_xoaActionPerformed
 
     /**
@@ -223,13 +221,17 @@ public class demoLoadData extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(demoLoadData.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(demoLoadData.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(demoLoadData.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(demoLoadData.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(demoLoadData.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(demoLoadData.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(demoLoadData.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(demoLoadData.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
