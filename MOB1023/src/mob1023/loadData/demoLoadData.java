@@ -72,7 +72,7 @@ public class demoLoadData extends javax.swing.JFrame {
 
     public void loadDataTable() {
         defaultTableModel = (DefaultTableModel) tb_sinhvien.getModel();
-//        defaultTableModel.setRowCount(0);
+        defaultTableModel.setRowCount(0);
         for (SinhVien sinhVien : listSinhVien) {
             defaultTableModel.addRow(new Object[]{
                 sinhVien.getHoTen(), sinhVien.getNamSinh()});
@@ -184,10 +184,7 @@ public class demoLoadData extends javax.swing.JFrame {
 
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
         // TODO add your handling code here:
-        /*
-        nếu thêm thành công -> thành công
-        thêm thất bại -> thất bại
-         */
+
         SinhVien sv = new SinhVien();
         String ten = txt_ten.getText();
         int namSinh = Integer.parseInt(cb_namsinh.getSelectedItem().toString());
