@@ -52,4 +52,34 @@ ví dụ var x = null;
 typeof x => null
 
 in ra màn hình : document.write("Giá trị muốn in");
+
+- Hàm có kiểu trả về
+var n = prompt("Nhap vao n ");
+function tinhTongN(n) {
+  var tong = 0;
+  for (let i = 0; i < Number(n); i++) {
+    tong += i;
+  }
+  return tong;
+}
+var tongN = tinhTongN(n);
+document.write(tongN);
+
+- Hàm không có kiểu trả về
+function tinhTong(a, b) {
+  var tong = Number(a) + Number(b);
+  if (tong > 5) {
+    document.write("Tong a +b > 5");
+  } else {
+    document.write("Tong 2 so <5");
+  }
+}
+ Sử lý sự kiện click
+function checkButton(x) {
+  if (x == 1) {
+    alert("da click button 1");
+  } else {
+    alert("da click button 2");
+  }
+}
 */
