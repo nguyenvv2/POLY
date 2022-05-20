@@ -82,6 +82,8 @@ public class Jtable extends javax.swing.JFrame {
 
     void cbcNamSinh() {
         listNamSinh = new ArrayList<>();
+        listNamSinh.add("1998");
+        listNamSinh.add("1999");
         listNamSinh.add("2000");
         listNamSinh.add("2001");
         listNamSinh.add("2002");
@@ -134,10 +136,12 @@ public class Jtable extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tb_gv = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        btn_clear = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         txt_magv = new javax.swing.JTextField();
-        btn_load = new javax.swing.JButton();
+        btn_xoa = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        btn_timkiem = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -168,13 +172,13 @@ public class Jtable extends javax.swing.JFrame {
             }
         });
 
-        rd_nu.setText("nu");
+        rd_nu.setText("nữ");
 
         jLabel3.setText("Giới tính");
 
         cbc_namsinh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1900", "1901", "1902" }));
 
-        jLabel4.setText("Nam Sinh");
+        jLabel4.setText("Năm sinh");
 
         tb_gv.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -194,10 +198,10 @@ public class Jtable extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tb_gv);
 
-        jButton1.setText("Clear");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_clear.setText("Clear");
+        btn_clear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_clearActionPerformed(evt);
             }
         });
 
@@ -205,10 +209,24 @@ public class Jtable extends javax.swing.JFrame {
 
         txt_magv.setText("Nhập mã giảng viên");
 
-        btn_load.setText("Load Data");
-        btn_load.addActionListener(new java.awt.event.ActionListener() {
+        btn_xoa.setText("Xóa");
+        btn_xoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_loadActionPerformed(evt);
+                btn_xoaActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Update");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        btn_timkiem.setText("Tìm Kiếm");
+        btn_timkiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_timkiemActionPerformed(evt);
             }
         });
 
@@ -233,18 +251,20 @@ public class Jtable extends javax.swing.JFrame {
                                 .addGap(260, 260, 260)
                                 .addComponent(btn_them))
                             .addComponent(cbc_namsinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_magv, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txt_sdt, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(rd_nam)
                                         .addGap(36, 36, 36)
-                                        .addComponent(rd_nu)))
+                                        .addComponent(rd_nu))
+                                    .addComponent(txt_magv, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(263, 263, 263)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton1)
-                                    .addComponent(btn_load)))))
+                                    .addComponent(btn_timkiem)
+                                    .addComponent(btn_clear)
+                                    .addComponent(btn_xoa)
+                                    .addComponent(jButton2)))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 892, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(21, 21, 21))))
@@ -278,9 +298,13 @@ public class Jtable extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(jButton1))
+                            .addComponent(btn_clear))
                         .addGap(10, 10, 10)
-                        .addComponent(btn_load)
+                        .addComponent(btn_xoa)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton2)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_timkiem)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -296,7 +320,6 @@ public class Jtable extends javax.swing.JFrame {
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
         // TODO add your handling code here:
 
-        String error = "";
         if ("".equals(txt_tengv.getText())) {
             JOptionPane.showMessageDialog(this, "Ten giao vien khong duoc trong");
         } else if ("".equals(txt_sdt.getText())) {
@@ -312,6 +335,7 @@ public class Jtable extends javax.swing.JFrame {
             gv.setNamSinh(Integer.parseInt(cbc_namsinh.getSelectedItem().toString()));
             gv.setId(giangVienService.getlstGiaoVien().size() + 1);
             gv.setSdt(txt_sdt.getText());
+            gv.setMagv(txt_magv.getText());
             Boolean isAdded = giangVienService.addGiaoVien(gv);
             if (isAdded) {
                 loadDataTable();
@@ -331,40 +355,90 @@ public class Jtable extends javax.swing.JFrame {
     private void tb_gvMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_gvMouseClicked
         // TODO add your handling code here:
         int rowSelected = tb_gv.getSelectedRow();
-        txt_tengv.setText((String) tb_gv.getValueAt(rowSelected, 2));
-        txt_sdt.setText((String) tb_gv.getValueAt(rowSelected, 5));
-        String gt = tb_gv.getValueAt(rowSelected, 4).toString();
-        if (gt.equals("nam")) {
+        txt_tengv.setText(tb_gv.getValueAt(rowSelected, 2).toString());
+        txt_sdt.setText(tb_gv.getValueAt(rowSelected, 5).toString());
+
+        if (tb_gv.getValueAt(rowSelected, 4).toString().equals("nam")) {
             rd_nam.setSelected(true);
         } else {
             rd_nu.setSelected(true);
         }
         txt_magv.setText(tb_gv.getValueAt(rowSelected, 1).toString());
-        String namSinh = tb_gv.getValueAt(rowSelected, 3).toString();
-        System.out.println(namSinh);
-        cbc_namsinh.setSelectedItem(namSinh);
+        cbc_namsinh.setSelectedItem(tb_gv.getValueAt(rowSelected, 3).toString());
 
     }//GEN-LAST:event_tb_gvMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btn_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearActionPerformed
         // TODO add your handling code here:
         txt_sdt.setText("");
         txt_tengv.setText("");
         txt_magv.setText("");
         cbc_namsinh.setSelectedIndex(0);
         buttonGroup.clearSelection();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btn_clearActionPerformed
 
-    private void btn_loadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loadActionPerformed
+    private void btn_xoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xoaActionPerformed
         // TODO add your handling code here:
-        defaultTableModel.setRowCount(0);
-        defaultTableModel = (DefaultTableModel) tb_gv.getModel();
-        for (GiaoVien x : giangVienService.getlstGiaoVien()) {
-            defaultTableModel.addRow(new Object[]{x.getId(), x.getMagv(),
-                x.getTengv(), x.getNamSinh(), x.getGioiTinh(), x.getSdt()});
+        int row = tb_gv.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this, "Hãy chọn giảng viên cần xóa");
+        } else {
+            int choice = JOptionPane.showConfirmDialog(this, "Bạn có muốn xóa giảng viên", "Xóa giảng viên", JOptionPane.YES_OPTION);
+            if (choice == JOptionPane.YES_OPTION) {
+                giangVienService.getlstGiaoVien().remove(row);
+                JOptionPane.showMessageDialog(this, "Xóa thành công");
+                loadDataTable();
+            }
         }
+
+    }//GEN-LAST:event_btn_xoaActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        int rowSelected = tb_gv.getSelectedRow();
+        GiaoVien giaoVien = giangVienService.getlstGiaoVien().get(rowSelected);
+        if ("".equals(txt_tengv.getText())) {
+            JOptionPane.showMessageDialog(this, "Ten giao vien khong duoc trong");
+        } else if ("".equals(txt_sdt.getText())) {
+            JOptionPane.showMessageDialog(this, "So dien thoai khong duoc bo trong");
+        } else {
+            giaoVien.setTengv(txt_tengv.getText());
+            if (rd_nu.isSelected()) {
+                giaoVien.setGioiTinh(0);
+            } else {
+                giaoVien.setGioiTinh(1);
+            }
+            giaoVien.setNamSinh(Integer.parseInt(cbc_namsinh.getSelectedItem().toString()));
+            giaoVien.setId(giangVienService.getlstGiaoVien().size() + 1);
+            giaoVien.setSdt(txt_sdt.getText());
+            giaoVien.setMagv(txt_magv.getText());
+            loadDataTable();
+
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void btn_timkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_timkiemActionPerformed
+        // TODO add your handling code here:
+        String search = JOptionPane.showInputDialog(this, "Nhập mã giảng viên", "Tìm kiếm", JOptionPane.YES_OPTION);
         
-    }//GEN-LAST:event_btn_loadActionPerformed
+        ArrayList<GiaoVien> listGv = new ArrayList<>();
+        for (GiaoVien giaoVien : giangVienService.getlstGiaoVien()) {
+            if (giaoVien.getMagv().equalsIgnoreCase(search)) {
+                listGv.add(giaoVien);
+            }
+        }
+        System.out.println(search);
+        if (listGv.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Không có giảng viên nào");
+        } else {
+            defaultTableModel = (DefaultTableModel) tb_gv.getModel();
+            defaultTableModel.setRowCount(0);
+            for (GiaoVien x : listGv) {
+                defaultTableModel.addRow(new Object[]{x.getId(), x.getMagv(),
+                    x.getTengv(), x.getNamSinh(), gioiTinh(x.getGioiTinh()), x.getSdt()});
+            }
+        }
+    }//GEN-LAST:event_btn_timkiemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -402,10 +476,12 @@ public class Jtable extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_load;
+    private javax.swing.JButton btn_clear;
     private javax.swing.JButton btn_them;
+    private javax.swing.JButton btn_timkiem;
+    private javax.swing.JButton btn_xoa;
     private javax.swing.JComboBox<String> cbc_namsinh;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

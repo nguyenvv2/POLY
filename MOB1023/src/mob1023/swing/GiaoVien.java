@@ -77,5 +77,12 @@ public class GiaoVien {
         this.sdt = sdt;
     }
 
+    @Override
+    public String toString() {
+        return "GiaoVien{" + "magv=" + magv + ", id=" + id + ", tengv=" + tengv + ", namSinh=" + namSinh + ", gioiTinh=" + gioiTinh + ", sdt=" + sdt + '}';
+    }
+    
+    
+
     
 }

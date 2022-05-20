@@ -42,7 +42,6 @@
                               <Component id="btn_them" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="cbc_namsinh" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="txt_magv" min="-2" pref="262" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="txt_sdt" alignment="0" min="-2" pref="262" max="-2" attributes="0"/>
@@ -51,11 +50,14 @@
                                       <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                                       <Component id="rd_nu" min="-2" max="-2" attributes="0"/>
                                   </Group>
+                                  <Component id="txt_magv" alignment="0" min="-2" pref="262" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="263" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btn_load" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btn_timkiem" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btn_clear" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btn_xoa" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jButton2" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -102,10 +104,14 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btn_clear" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                      <Component id="btn_load" min="-2" max="-2" attributes="0"/>
+                      <Component id="btn_xoa" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btn_timkiem" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -157,7 +163,7 @@
     </Component>
     <Component class="javax.swing.JRadioButton" name="rd_nu">
       <Properties>
-        <Property name="text" type="java.lang.String" value="nu"/>
+        <Property name="text" type="java.lang.String" value="n&#x1eef;"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
@@ -181,7 +187,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Nam Sinh"/>
+        <Property name="text" type="java.lang.String" value="N&#x103;m sinh"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane2">
@@ -209,12 +215,12 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="btn_clear">
       <Properties>
         <Property name="text" type="java.lang.String" value="Clear"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_clearActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
@@ -227,12 +233,28 @@
         <Property name="text" type="java.lang.String" value="Nh&#x1ead;p m&#xe3; gi&#x1ea3;ng vi&#xea;n"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btn_load">
+    <Component class="javax.swing.JButton" name="btn_xoa">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Load Data"/>
+        <Property name="text" type="java.lang.String" value="X&#xf3;a"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_loadActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_xoaActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Update"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btn_timkiem">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="T&#xec;m Ki&#x1ebf;m"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_timkiemActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
