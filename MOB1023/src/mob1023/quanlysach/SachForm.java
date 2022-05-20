@@ -317,7 +317,7 @@ public class SachForm extends javax.swing.JFrame {
         } else {
             rd_truyenngan.setSelected(true);
         }
-        cb_namin.setSelectedItem(tb_table.getValueAt(row, 3));
+        cb_namin.setSelectedItem(tb_table.getValueAt(row, 3).toString());
     }//GEN-LAST:event_tb_tableMouseClicked
 
     public static void main(String args[]) {
