@@ -274,9 +274,11 @@ public class SachForm extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Vui lòng chọn loại sách!");
             }
             s1.setNamIn(Integer.parseInt(cb_namin.getSelectedItem().toString()));
-            
+
             loadData();
         }
+
+        
     }//GEN-LAST:event_btn_themActionPerformed
 
     private void btn_xoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xoaActionPerformed
@@ -310,15 +312,14 @@ public class SachForm extends javax.swing.JFrame {
 
     private void tb_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_tableMouseClicked
         int row = tb_table.getSelectedRow();
-        Sach sach = listSach.get(row);
-        txt_tensach.setText(sach.getTen());
-        txt_tacgia.setText(sach.getTacGia());
-        if (sach.getTheLoai() == 2) {
+        txt_tensach.setText(tb_table.getValueAt(row, 0).toString());
+        txt_tacgia.setText(tb_table.getValueAt(row, 1).toString());
+        if (tb_table.getValueAt(row, 2).toString().equals("Tiểu thuyết")) {
             rd_tieuthuyet.setSelected(true);
         } else {
             rd_truyenngan.setSelected(true);
         }
-        cb_namin.setSelectedItem(sach.getNamIn());
+        cb_namin.setSelectedItem(tb_table.getValueAt(row, 3).toString());
     }//GEN-LAST:event_tb_tableMouseClicked
 
     public static void main(String args[]) {
