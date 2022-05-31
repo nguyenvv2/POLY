@@ -10,5 +10,8 @@ package mob1023.sudunginterface;
  */
 public class Main {
     
-    
+    public static void main(String[] args) {
+        IService iService = new ServiceImpl();
+        iService.nhapGiaoVien();
+    }
 }
