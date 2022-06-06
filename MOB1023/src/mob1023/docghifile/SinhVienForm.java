@@ -49,7 +49,7 @@ public class SinhVienForm extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txt_ten = new javax.swing.JTextField();
         txt_diachi = new javax.swing.JTextField();
-        btn_docFile = new javax.swing.JButton();
+        btn_loadData = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         btn_xoa = new javax.swing.JButton();
         btn_ghifile = new javax.swing.JButton();
@@ -75,10 +75,10 @@ public class SinhVienForm extends javax.swing.JFrame {
 
         jLabel2.setText("Dia chi");
 
-        btn_docFile.setText("LoadData");
-        btn_docFile.addActionListener(new java.awt.event.ActionListener() {
+        btn_loadData.setText("LoadData");
+        btn_loadData.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_docFileActionPerformed(evt);
+                btn_loadDataActionPerformed(evt);
             }
         });
 
@@ -135,7 +135,7 @@ public class SinhVienForm extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btn_docFile)
+                                        .addComponent(btn_loadData)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(btn_xoa))
                                     .addGroup(layout.createSequentialGroup()
@@ -159,7 +159,7 @@ public class SinhVienForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txt_ten, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_docFile)
+                    .addComponent(btn_loadData)
                     .addComponent(btn_xoa)
                     .addComponent(btn_mofile))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -231,7 +231,7 @@ public class SinhVienForm extends javax.swing.JFrame {
 
     }
 
-    private void btn_docFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_docFileActionPerformed
+    private void btn_loadDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loadDataActionPerformed
 
         defaultTableModel = (DefaultTableModel) tbl_gv.getModel();
         defaultTableModel.setRowCount(0);
@@ -241,7 +241,7 @@ public class SinhVienForm extends javax.swing.JFrame {
         }
 
 
-    }//GEN-LAST:event_btn_docFileActionPerformed
+    }//GEN-LAST:event_btn_loadDataActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -337,8 +337,8 @@ public class SinhVienForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_clear;
-    private javax.swing.JButton btn_docFile;
     private javax.swing.JButton btn_ghifile;
+    private javax.swing.JButton btn_loadData;
     private javax.swing.JButton btn_mofile;
     private javax.swing.JButton btn_xoa;
     private javax.swing.JButton jButton1;

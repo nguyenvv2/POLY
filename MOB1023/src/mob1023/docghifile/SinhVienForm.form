@@ -38,7 +38,7 @@
                               <EmptySpace max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <Component id="btn_docFile" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btn_loadData" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="btn_xoa" min="-2" max="-2" attributes="0"/>
                                   </Group>
@@ -73,7 +73,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txt_ten" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btn_docFile" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btn_loadData" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btn_xoa" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btn_mofile" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -155,12 +155,12 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txt_diachi">
     </Component>
-    <Component class="javax.swing.JButton" name="btn_docFile">
+    <Component class="javax.swing.JButton" name="btn_loadData">
       <Properties>
         <Property name="text" type="java.lang.String" value="LoadData"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_docFileActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_loadDataActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">

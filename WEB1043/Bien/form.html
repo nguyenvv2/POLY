@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <form>
+        <table>
+          <tr>
+            <td><p>Tên khách hàng</p></td>
+            <td><input type="text" id="tenKhachHang" /></td>
+            <td><p id="errorTenKhachHang"></p></td>
+          </tr>
+          <tr>
+            <td><p>Chọn loại hàng</p></td>
+            <td>
+              <select id="theLoai" onchange="fillDropdown()">
+                <option value="10000">Loai 1</option>
+                <option value="20000">Loai 2</option>
+                <option value="30000">Loai 3</option>
+                <option value="40000">Loai 4</option>
+              </select>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><p>Đơn giá</p></td>
+            <td><input type="text" id="donGia" /></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><p>So luong</p></td>
+            <td><input type="text" onchange="soLuong()" id="soluong" /></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><p>Thanh tien</p></td>
+            <td><input type="text" id="thanhtien" /></td>
+            <td></td>
+          </tr>
+        </table>
+        <button type="button" onclick="handlerForm()">Submit</button>
+      </form>
+    </div>
+    <script src="form.js"></script>
+  </body>
+</html>
