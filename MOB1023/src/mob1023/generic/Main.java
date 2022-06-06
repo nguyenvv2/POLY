@@ -15,6 +15,7 @@ public class Main {
     public static void main(String[] args) {
         IService<NhanVien> nhanVienIService = new Service<>();
         IService<LopHoc> lopIService = new Service<>();
+        
         NhanVien nv = new NhanVien("Nguyen Van A");
         NhanVien nv1 = new NhanVien("Nguyen Van C");
         NhanVien nv2 = new NhanVien("Nguyen Van D");
@@ -25,6 +26,7 @@ public class Main {
         lopIService.add(lopHoc);
         List<LopHoc> listLopHoc = lopIService.getList();
         List<NhanVien> list = nhanVienIService.getList();
+        
         for (NhanVien nhanVien : list) {
             System.out.println(nhanVien.toString());
         }
