@@ -11,9 +11,9 @@ import java.util.List;
  *
  * @author nguyenvv
  */
-public class Service<T> implements IService<T>{
+public class Service<T> implements IService<T> {
 
-        List<T> lstTemp = new ArrayList<>();
+    List<T> lstTemp = new ArrayList<>();
 
     @Override
     public List<T> getList() {
@@ -26,6 +26,4 @@ public class Service<T> implements IService<T>{
         return true;
     }
 
-  
-    
 }
